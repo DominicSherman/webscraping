@@ -5,6 +5,30 @@
     justify-content: center;
 }
 
+.App-header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    width: 70%;
+}
+
+.App-button {
+    align-items: center;
+    display: flex;
+    height: 10%;
+    width: 100%;
+    padding: 1%;
+    margin: 5%;
+    border: solid black 1px;
+    border-radius: 4px;
+    justify-content: center;
+}
+
+.App-button:hover {
+    background-color: lightgrey;
+    cursor: pointer;
+}
+
 .App-rowWrapper {
     display: flex;
     flex-direction: row;

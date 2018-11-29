@@ -1,8 +1,6 @@
 import rp from 'request-promise';
 import $ from 'cheerio';
 
-const url = 'http://www.espn.com/soccer/team/_/id/9723';
-
 const getTime = (times, i) => {
     if (times[`${i / 2}`].children[0].data) {
         return [times[`${i / 2}`].children[0].data];
@@ -14,7 +12,7 @@ const getTime = (times, i) => {
 };
 
 
-export const getData = async () => {
+export const getData = async (url) => {
     return rp(url)
         .then((html) => {
             const names = $('span.short-name', html);
