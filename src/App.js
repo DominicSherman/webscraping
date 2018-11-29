@@ -20,29 +20,56 @@ class App extends Component {
     render() {
         return (
             <div className="App">
+                <h1>{'Portland Timbers'}</h1>
                 {
-                    this.state.matches.map((m) => (
-                        <div className={'App-rowWrapper'}>
-                            <div className={'App-columnWrapper'}>
-                                <img
-                                    alt={''}
-                                    src={m.homeLogo}
-                                />
+                    this.state.matches.map((m) => {
+                        let winner = 'tie';
+
+                        if (Number(m.homeScore) < Number(m.awayScore)) {
+                            winner = 'away';
+                        } else if (Number(m.homeScore) > Number(m.awayScore)) {
+                            winner = 'home';
+                        }
+
+                        return (
+                            <div className={'App-rowWrapper'}>
+                                <div className={'App-columnWrapper'}>
+                                    <img
+                                        alt={''}
+                                        src={m.homeLogo}
+                                    />
+                                </div>
+                                {
+                                    winner === 'home'
+                                        ?
+                                        <div className={'App-columnWrapper'}><b>{m.home}</b></div>
+                                        :
+                                        <div className={'App-columnWrapper'}>{m.home}</div>
+                                }
+                                <div className={'App-columnWrapper'}>
+                                    {
+                                        m.time[0] === 'FT' ?
+                                            <div>{m.homeScore}-{m.awayScore}</div>
+                                            :
+                                            <div><p>{m.time[0]}</p><p>{m.time[1]}</p></div>
+                                    }
+                                </div>
+                                {
+                                    winner === 'away'
+                                        ?
+                                        <div className={'App-columnWrapper'}><b>{m.away}</b></div>
+                                        :
+                                        <div className={'App-columnWrapper'}>{m.away}</div>
+                                }
+                                <div className={'App-columnWrapper'}>
+                                    <img
+                                        alt={''}
+                                        src={m.awayLogo}
+                                    />
+                                </div>
                             </div>
-                            <div className={'App-columnWrapper'}>{m.home}</div>
-                            <div className={'App-columnWrapper'}>
-                                <div>{m.time}</div>
-                                <div>{m.homeScore}-{m.awayScore}</div>
-                            </div>
-                            <div className={'App-columnWrapper'}>{m.away}</div>
-                            <div className={'App-columnWrapper'}>
-                                <img
-                                    alt={''}
-                                    src={m.awayLogo}
-                                />
-                            </div>
-                        </div>
-                    ))
+                        );
+                    })
                 }
             </div>
         );
